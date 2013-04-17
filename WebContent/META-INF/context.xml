@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Context>
+
+	<Resource name="jdbc/photoShare" auth="Container" type="javax.sql.DataSource"
+		maxActive="1000" maxIdle="30" maxWait="10000" username="SA" password="June123"
+		driverClassName="com.microsoft.sqlserver.jdbc.SQLServerDriver"
+		url="jdbc:sqlserver://localhost:1433;databaseName=photoShare" />
+
+</Context>
