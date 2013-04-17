@@ -8,16 +8,16 @@ public class AuthenticateValve implements Valve {
 
 	@Override
 	public void invoke(ValveContext valveContext) throws ValveException {
-		// TODO Auto-generated method stub
 		Authenticator authenticator = valveContext.getContext().getRequest()
 				.getAuthenticator();
 		User user = valveContext.getContext().getRequest().getCurrentUser();
 		try {
 			authenticator.authenticate(user);
 		} catch (AuthenticateException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			throw new ValveException("Authenticate Exception Occured");
 		}
+		valveContext.invokeNext(valveContext.getContext().getRequest(),
+				valveContext.getContext().getResponse(), valveContext);
 	}
 
 }

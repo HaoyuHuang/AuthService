@@ -18,6 +18,8 @@ public class AuthorizeValve implements Valve {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		valveContext.invokeNext(valveContext.getContext().getRequest(),
+				valveContext.getContext().getResponse(), valveContext);
 	}
 
 }

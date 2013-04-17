@@ -3,7 +3,7 @@ package com.photoshare.auth.context;
 import com.photoshare.auth.Authenticator;
 import com.photoshare.auth.user.User;
 import com.photoshare.authorization.Authorizer;
-import com.photoshare.validate.Validator;
+import com.photoshare.validate.AuthValidator;
 
 public interface Request {
 	public User getCurrentUser();
@@ -18,9 +18,9 @@ public interface Request {
 
 	public Authorizer getAuthorizer();
 
-	public void bindValidator(Validator validator);
+	public void bindValidator(AuthValidator validator);
 
-	public Validator getValidator();
+	public AuthValidator getValidator();
 
 	public void bindAuthDecoder(AuthDecoder decoder);
 

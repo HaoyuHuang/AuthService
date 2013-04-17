@@ -2,7 +2,7 @@ package com.photoshare.auth;
 
 import com.photoshare.auth.context.AuthDecoder;
 import com.photoshare.auth.user.User;
-import com.photoshare.validate.Validator;
+import com.photoshare.validate.AuthValidator;
 
 /**
  * @author Aron <br/>
@@ -35,7 +35,7 @@ public interface Authenticator {
 	/**
 	 * @return
 	 */
-	public Validator getValidator();
+	public AuthValidator getValidator();
 
 	/**
 	 * Delete the Authenticator.

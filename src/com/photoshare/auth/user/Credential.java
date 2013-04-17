@@ -7,5 +7,5 @@ package com.photoshare.auth.user;
  * 
  */
 public interface Credential {
-
+	public String getPassword();
 }

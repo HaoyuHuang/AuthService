@@ -38,5 +38,5 @@ public interface User {
 	 * @return the Auth Token {@link Token}
 	 */
 	public Token getAuthToken();
-	
+
 }

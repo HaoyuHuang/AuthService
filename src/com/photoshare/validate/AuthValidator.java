@@ -8,6 +8,6 @@ import com.photoshare.auth.user.User;
  *         The Validator is responsible for validating all incoming request.
  * 
  */
-public interface Validator {
+public interface AuthValidator {
 	public void validate(User user) throws ValidationException;
 }

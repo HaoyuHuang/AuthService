@@ -7,15 +7,15 @@ package com.photoshare.auth;
  * 
  */
 public class AuthService {
-	public String login() {
-		return new AuthConnector().login();
+	public String login(String content) {
+		return new AuthConnector().authenticate(content);
 	}
 
-	public String authenticate() {
-		return new AuthConnector().authenticate();
+	public String authorize(String content) {
+		return new AuthConnector().authorize(content);
 	}
 
-	public String logout() {
-		return new AuthConnector().logout();
+	public String logout(String content) {
+		return new AuthConnector().logout(content);
 	}
 }

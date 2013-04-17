@@ -8,7 +8,7 @@ import com.photoshare.auth.user.User;
  *         The Standard Implementation of the validator
  * 
  */
-public class StandardValidator implements Validator {
+public class AuthSimpleValidator implements AuthValidator {
 
 	@Override
 	public void validate(User user) throws ValidationException {

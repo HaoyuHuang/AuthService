@@ -2,14 +2,14 @@ package com.photoshare.auth.context;
 
 import com.photoshare.auth.user.User;
 import com.photoshare.validate.ValidationException;
-import com.photoshare.validate.Validator;
+import com.photoshare.validate.AuthValidator;
 
 public class ValidationValve implements Valve {
 
 	@Override
 	public void invoke(ValveContext valveContext) throws ValveException {
 		// TODO Auto-generated method stub
-		Validator validator = valveContext.getContext().getRequest()
+		AuthValidator validator = valveContext.getContext().getRequest()
 				.getValidator();
 		User user = valveContext.getContext().getRequest().getCurrentUser();
 		try {
@@ -18,6 +18,8 @@ public class ValidationValve implements Valve {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		valveContext.invokeNext(valveContext.getContext().getRequest(),
+				valveContext.getContext().getResponse(), valveContext);
 	}
 
 }

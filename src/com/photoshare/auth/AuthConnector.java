@@ -1,5 +1,10 @@
 package com.photoshare.auth;
 
+import com.photoshare.auth.context.Processor;
+import com.photoshare.auth.context.ProcessorException;
+import com.photoshare.authorization.AuthorizeProcessor;
+import com.photoshare.authorization.UnAuthorizeProcessor;
+
 /**
  * @author Aron
  * 
@@ -8,15 +13,40 @@ package com.photoshare.auth;
  * 
  */
 public class AuthConnector {
-	public String login() {
-		return "";
+	public String authenticate(String content) {
+		Processor processor = new AuthenticateProcessor();
+		String response = "";
+		try {
+			response = processor.process();
+		} catch (ProcessorException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return response;
 	}
 
-	public String authenticate() {
-		return "";
+	public String authorize(String content) {
+		Processor processor = new AuthorizeProcessor();
+		String response = "";
+
+		try {
+			response = processor.process();
+		} catch (ProcessorException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return response;
 	}
 
-	public String logout() {
-		return "";
+	public String logout(String content) {
+		Processor processor = new UnAuthorizeProcessor();
+		String response = "";
+		try {
+			response = processor.process();
+		} catch (ProcessorException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return response;
 	}
 }

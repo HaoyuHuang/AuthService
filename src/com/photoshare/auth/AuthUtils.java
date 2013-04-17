@@ -7,5 +7,11 @@ package com.photoshare.auth;
  * 
  */
 public class AuthUtils {
+	public static final String KEY_USER = "user";
 
+	public static final String KEY_USER_NAME = "userName";
+
+	public static final String KEY_USER_PASSWORD = "password";
+
+	public static final String KEY_TOKEN = "token";
 }

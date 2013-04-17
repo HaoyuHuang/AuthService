@@ -6,6 +6,6 @@ package com.photoshare.authorization;
  *         The Standard implementation of the Token Keeper
  * 
  */
-public class StandardTokenKeeper implements TokenKeepper {
+public class SimpleTokenKeeper implements TokenKeepper {
 
 }

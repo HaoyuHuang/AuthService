@@ -6,7 +6,6 @@ public class DecoderValve implements Valve {
 
 	@Override
 	public void invoke(ValveContext valveContext) throws ValveException {
-		// TODO Auto-generated method stub
 		AuthDecoder decoder = valveContext.getContext().getRequest()
 				.getAuthDecoder();
 		User user = null;
@@ -14,10 +13,11 @@ public class DecoderValve implements Valve {
 			user = decoder.decode(valveContext.getContext().getRequest()
 					.getRequest());
 		} catch (DecodeException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			throw new ValveException("Decode Exception Occured");
 		}
 		valveContext.getContext().getRequest().bindUser(user);
+		valveContext.invokeNext(valveContext.getContext().getRequest(),
+				valveContext.getContext().getResponse(), valveContext);
 	}
 
 }
