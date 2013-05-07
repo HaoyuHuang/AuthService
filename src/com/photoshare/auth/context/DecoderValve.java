@@ -6,6 +6,9 @@ public class DecoderValve implements Valve {
 
 	@Override
 	public void invoke(ValveContext valveContext) throws ValveException {
+		valveContext.invokeNext(valveContext.getContext().getRequest(),
+				valveContext.getContext().getResponse(), valveContext);
+		System.out.println("DecoderValve");
 		AuthDecoder decoder = valveContext.getContext().getRequest()
 				.getAuthDecoder();
 		User user = null;
@@ -16,8 +19,6 @@ public class DecoderValve implements Valve {
 			throw new ValveException("Decode Exception Occured");
 		}
 		valveContext.getContext().getRequest().bindUser(user);
-		valveContext.invokeNext(valveContext.getContext().getRequest(),
-				valveContext.getContext().getResponse(), valveContext);
 	}
 
 }

@@ -12,7 +12,17 @@ public class AuthSimpleEncoder implements AuthEncoder {
 			a[i] = (char) (a[i] ^ 't');
 		}
 		String s = new String(a);
-		
+
+		return s;
+	}
+
+	public String encode(String response) {
+		char[] a = response.toCharArray();
+		for (int i = 0; i < a.length; i++) {
+			a[i] = (char) (a[i] ^ 't');
+		}
+		String s = new String(a);
+
 		return s;
 	}
 

@@ -33,6 +33,7 @@ public abstract class PipelineSupport implements Pipeline {
 			ValveContext valveContext) throws ValveException;
 
 	public void removeValve(Valve valve) {
+		
 	}
 
 }

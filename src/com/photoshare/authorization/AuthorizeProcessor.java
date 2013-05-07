@@ -31,7 +31,7 @@ public class AuthorizeProcessor implements Processor {
 	private String request;
 
 	@Override
-	public String process() throws ProcessorException {
+	public String process(String content) throws ProcessorException {
 		// TODO Auto-generated method stub
 		pipeline = new SimpleAuthenticationPipeline();
 		context = new AuthorizeContext();

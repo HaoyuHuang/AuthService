@@ -2,8 +2,11 @@ package com.photoshare.auth;
 
 import com.photoshare.auth.context.AuthDecoder;
 import com.photoshare.auth.context.AuthEncoder;
+import com.photoshare.auth.context.AuthSimpleDecoder;
+import com.photoshare.auth.context.AuthSimpleEncoder;
 import com.photoshare.auth.user.User;
 import com.photoshare.persistence.DateManager;
+import com.photoshare.validate.AuthSimpleValidator;
 import com.photoshare.validate.AuthValidator;
 
 /**
@@ -15,7 +18,7 @@ import com.photoshare.validate.AuthValidator;
 public class SimpleAuthenticator implements Authenticator {
 
 	private AuthDecoder authDecoder;
-	
+
 	private AuthEncoder authEncoder;
 
 	private AuthValidator authValidator;
@@ -24,6 +27,9 @@ public class SimpleAuthenticator implements Authenticator {
 	public void init(AuthConfig config) {
 		// TODO Auto-generated method stub
 		config.configDataSource(null);
+		authDecoder = new AuthSimpleDecoder();
+		authEncoder = new AuthSimpleEncoder();
+		authValidator = new AuthSimpleValidator();
 		config.configDecoder(authDecoder);
 		config.configEncoder(authEncoder);
 		config.configValidator(authValidator);

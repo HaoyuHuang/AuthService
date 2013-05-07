@@ -7,7 +7,6 @@ import com.photoshare.auth.context.AuthEncoder;
 import com.photoshare.auth.context.AuthenticateValve;
 import com.photoshare.auth.context.Context;
 import com.photoshare.auth.context.DecoderValve;
-import com.photoshare.auth.context.EncodeValve;
 import com.photoshare.auth.context.FlushValve;
 import com.photoshare.auth.context.GetTokenValve;
 import com.photoshare.auth.context.LoginEntryValve;
@@ -33,17 +32,19 @@ public class AuthenticateProcessor implements Processor {
 	private String request;
 
 	@Override
-	public String process() throws ProcessorException {
+	public String process(String content) throws ProcessorException {
 		// TODO Auto-generated method stub
 		pipeline = new SimpleAuthenticationPipeline();
 		context = new AuthenticateContext();
 		pipeline.setBasic(new LoginEntryValve());
-		pipeline.addValve(new DecoderValve());
-		pipeline.addValve(new ValidationValve());
-		pipeline.addValve(new AuthenticateValve());
-		pipeline.addValve(new GetTokenValve());
-		pipeline.addValve(new EncodeValve());
 		pipeline.addValve(new FlushValve());
+		pipeline.addValve(new GetTokenValve());
+		pipeline.addValve(new AuthenticateValve());
+		pipeline.addValve(new ValidationValve());
+		pipeline.addValve(new DecoderValve());
+
+		// pipeline.addValve(new EncodeValve());
+
 		pipeline.setContext(context);
 		try {
 			pipeline.invoke(context.getRequest(), context.getResponse(), null);

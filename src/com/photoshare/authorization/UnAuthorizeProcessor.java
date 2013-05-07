@@ -30,7 +30,7 @@ public class UnAuthorizeProcessor implements Processor {
 	private String request;
 
 	@Override
-	public String process() throws ProcessorException {
+	public String process(String content) throws ProcessorException {
 		pipeline = new SimpleAuthenticationPipeline();
 		context = new UnAuthorizeContext();
 		pipeline.setBasic(new LogoutEntryValve());

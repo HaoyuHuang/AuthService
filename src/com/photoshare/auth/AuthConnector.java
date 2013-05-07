@@ -2,6 +2,8 @@ package com.photoshare.auth;
 
 import com.photoshare.auth.context.Processor;
 import com.photoshare.auth.context.ProcessorException;
+import com.photoshare.auth.user.PasswordCredential;
+import com.photoshare.auth.user.SimpleUser;
 import com.photoshare.authorization.AuthorizeProcessor;
 import com.photoshare.authorization.UnAuthorizeProcessor;
 
@@ -17,7 +19,8 @@ public class AuthConnector {
 		Processor processor = new AuthenticateProcessor();
 		String response = "";
 		try {
-			response = processor.process();
+			processor.init(content);
+			response = processor.process(content);
 		} catch (ProcessorException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -30,7 +33,8 @@ public class AuthConnector {
 		String response = "";
 
 		try {
-			response = processor.process();
+			processor.init(content);
+			response = processor.process(content);
 		} catch (ProcessorException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -42,7 +46,8 @@ public class AuthConnector {
 		Processor processor = new UnAuthorizeProcessor();
 		String response = "";
 		try {
-			response = processor.process();
+			processor.init(content);
+			response = processor.process(content);
 		} catch (ProcessorException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

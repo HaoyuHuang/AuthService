@@ -11,13 +11,15 @@ public class GetTokenValve implements Valve {
 
 	@Override
 	public void invoke(ValveContext valveContext) throws ValveException {
+		valveContext.invokeNext(valveContext.getContext().getRequest(),
+				valveContext.getContext().getResponse(), valveContext);
+		System.out.println("GetTokenValve");
 		User user = valveContext.getContext().getRequest().getCurrentUser();
 		String userName = user.getUserName();
 		Credential credential = user.getCredential();
 		Date date = user.getLoginDate();
 		Token token = TokenGenerator.generate(userName, credential, date);
 		valveContext.getContext().getResponse().setToken(token);
-		valveContext.invokeNext(valveContext.getContext().getRequest(),
-				valveContext.getContext().getResponse(), valveContext);
+
 	}
 }

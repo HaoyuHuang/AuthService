@@ -8,7 +8,9 @@ public class ValidationValve implements Valve {
 
 	@Override
 	public void invoke(ValveContext valveContext) throws ValveException {
-		// TODO Auto-generated method stub
+		valveContext.invokeNext(valveContext.getContext().getRequest(),
+				valveContext.getContext().getResponse(), valveContext);
+		System.out.println("ValidationValve");
 		AuthValidator validator = valveContext.getContext().getRequest()
 				.getValidator();
 		User user = valveContext.getContext().getRequest().getCurrentUser();
@@ -18,8 +20,7 @@ public class ValidationValve implements Valve {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		valveContext.invokeNext(valveContext.getContext().getRequest(),
-				valveContext.getContext().getResponse(), valveContext);
+
 	}
 
 }
