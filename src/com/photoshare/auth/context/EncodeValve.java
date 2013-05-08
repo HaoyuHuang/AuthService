@@ -7,6 +7,9 @@ public class EncodeValve implements Valve {
 	@Override
 	public void invoke(ValveContext valveContext) throws ValveException {
 
+		valveContext.invokeNext(valveContext.getContext().getRequest(),
+				valveContext.getContext().getResponse(), valveContext);
+
 		Response response = valveContext.getContext().getResponse();
 		AuthEncoder authEncoder = response.getAuthEncoder();
 		try {
@@ -14,14 +17,11 @@ public class EncodeValve implements Valve {
 			response.clear();
 			response.append(encodedResponse);
 		} catch (EncoderException e) {
-			e.printStackTrace();
-			throw new ValveException(e.getMessage());
+			throw new ValveException(401, e.getMessage());
 		} catch (IOException e) {
-			e.printStackTrace();
-			throw new ValveException(e.getMessage());
+			throw new ValveException(401, e.getMessage());
 		}
-		valveContext.invokeNext(valveContext.getContext().getRequest(),
-				valveContext.getContext().getResponse(), valveContext);
+
 	}
 
 }

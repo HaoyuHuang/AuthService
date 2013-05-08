@@ -8,16 +8,18 @@ public class AuthEntryValve implements Valve {
 
 	@Override
 	public void invoke(ValveContext valveContext) throws ValveException {
-		// TODO Auto-generated method stub
 		Authorizer authorizer = new SimpleAuthorizer();
 		authorizer.init(new SimpleAuthorizeConfig());
-		valveContext.getContext().getRequest().bindAuthorizer(authorizer);
-		valveContext.getContext().getRequest()
-				.bindAuthDecoder(authorizer.getDecoder());
-		valveContext.getContext().getRequest()
-				.bindValidator(authorizer.getValidator());
-		valveContext.invokeNext(valveContext.getContext().getRequest(),
-				valveContext.getContext().getResponse(), valveContext);
+
+		Request request = valveContext.getContext().getRequest();
+		Response response = valveContext.getContext().getResponse();
+
+		request.bindAuthorizer(authorizer);
+		request.bindAuthDecoder(authorizer.getDecoder());
+		request.bindValidator(authorizer.getValidator());
+
+		response.bindEncoder(authorizer.getEncoder());
+
 	}
 
 }

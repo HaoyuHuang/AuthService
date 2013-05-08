@@ -2,7 +2,10 @@ package com.photoshare.authorization;
 
 import com.photoshare.auth.context.AuthDecoder;
 import com.photoshare.auth.context.AuthEncoder;
+import com.photoshare.auth.context.AuthSimpleDecoder;
+import com.photoshare.auth.context.AuthSimpleEncoder;
 import com.photoshare.auth.user.User;
+import com.photoshare.validate.AuthSimpleValidator;
 import com.photoshare.validate.AuthValidator;
 
 /**
@@ -23,7 +26,9 @@ public class SimpleAuthorizer implements Authorizer {
 
 	@Override
 	public void init(AuthorizeConfig config) {
-		// TODO Auto-generated method stub
+		authDecoder = new AuthSimpleDecoder();
+		authEncoder = new AuthSimpleEncoder();
+		authValidator = new AuthSimpleValidator();
 		config.configDecoder(authDecoder);
 		config.configEncoder(authEncoder);
 		config.configTokenKeeper(keepper);
@@ -32,9 +37,20 @@ public class SimpleAuthorizer implements Authorizer {
 	}
 
 	@Override
-	public void authorize(User user) {
+	public void authorize(User user) throws AuthorizeException {
 		// TODO Auto-generated method stub
+		TokenPool pool = TokenPool.Instance();
+		TokenKeepper keeper = pool.retrieveTokenKeeper(user.getUserName());
+		if (keeper == null) {
+			System.out.println("keeper is null");
+			throw new AuthorizeException();
+		}
 
+		boolean exist = keeper.checkToken(user.getAuthToken());
+		if (!exist) {
+			System.out.println("check failed");
+			throw new AuthorizeException();
+		}
 	}
 
 	@Override
@@ -59,6 +75,12 @@ public class SimpleAuthorizer implements Authorizer {
 	public AuthValidator getValidator() {
 		// TODO Auto-generated method stub
 		return authValidator;
+	}
+
+	@Override
+	public AuthEncoder getEncoder() {
+		// TODO Auto-generated method stub
+		return authEncoder;
 	}
 
 }

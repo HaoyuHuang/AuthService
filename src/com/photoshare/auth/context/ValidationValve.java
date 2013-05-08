@@ -20,7 +20,5 @@ public class ValidationValve implements Valve {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-
 	}
-
 }

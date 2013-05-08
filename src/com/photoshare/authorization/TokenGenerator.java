@@ -13,7 +13,10 @@ public class TokenGenerator {
 
 	public static Token generate(String userName, Credential credential,
 			Date loginDate) {
-		return new Token(UUID(), userName, credential, loginDate, null);
+		Token token = new Token(UUID(), userName, credential, loginDate, null);
+		TokenPool pool = TokenPool.Instance();
+		pool.put(userName, token);
+		return token;
 	}
 
 	public static void main(String[] args) {

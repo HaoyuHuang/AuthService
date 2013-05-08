@@ -15,6 +15,8 @@ public class LoginEntryValve implements Valve {
 		request.bindAuthenticator(authenticator);
 		request.bindAuthDecoder(authenticator.getDecoder());
 		request.bindValidator(authenticator.getValidator());
+		Response response = valveContext.getContext().getResponse();
+		response.bindEncoder(new AuthSimpleEncoder());
 	}
 
 }

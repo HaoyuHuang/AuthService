@@ -5,7 +5,7 @@ import com.photoshare.auth.context.AuthEncoder;
 import com.photoshare.auth.context.AuthSimpleDecoder;
 import com.photoshare.auth.context.AuthSimpleEncoder;
 import com.photoshare.auth.user.User;
-import com.photoshare.persistence.DateManager;
+import com.photoshare.persistence.DataManager;
 import com.photoshare.validate.AuthSimpleValidator;
 import com.photoshare.validate.AuthValidator;
 
@@ -38,7 +38,7 @@ public class SimpleAuthenticator implements Authenticator {
 	@Override
 	public void authenticate(User user) throws AuthenticateException {
 		// TODO Auto-generated method stub
-		boolean retAuth = DateManager.authenticate(user);
+		boolean retAuth = DataManager.authenticate(user);
 		if (!retAuth)
 			throw new AuthenticateException();
 	}

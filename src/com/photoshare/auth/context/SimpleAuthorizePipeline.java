@@ -30,7 +30,7 @@ public class SimpleAuthorizePipeline extends PipelineSupport {
 			} else if (subscript == valves.length && (basic != null)) {
 				basic.invoke(this);
 			} else {
-				throw new ValveException("No valve");
+				throw new ValveException(404, "No valve");
 			}
 		}
 

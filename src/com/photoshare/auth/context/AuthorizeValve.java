@@ -8,18 +8,20 @@ public class AuthorizeValve implements Valve {
 
 	@Override
 	public void invoke(ValveContext valveContext) throws ValveException {
-		// TODO Auto-generated method stub
+
+		valveContext.invokeNext(valveContext.getContext().getRequest(),
+				valveContext.getContext().getResponse(), valveContext);
+		System.out.println("AuthorizeValve");
+
 		Authorizer authorizer = valveContext.getContext().getRequest()
 				.getAuthorizer();
 		User user = valveContext.getContext().getRequest().getCurrentUser();
 		try {
 			authorizer.authorize(user);
 		} catch (AuthorizeException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			throw new ValveException(405, "Access Denied");
 		}
-		valveContext.invokeNext(valveContext.getContext().getRequest(),
-				valveContext.getContext().getResponse(), valveContext);
+
 	}
 
 }

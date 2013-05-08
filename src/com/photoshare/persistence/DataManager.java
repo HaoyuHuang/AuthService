@@ -8,11 +8,11 @@ import javax.persistence.Query;
 
 import com.photoshare.auth.user.User;
 
-public class DateManager {
+public class DataManager {
 	private static EntityManager entityManager;
 
 	private static final class DateManagerHolder {
-		public static final DateManager MANAGER = new DateManager();
+		public static final DataManager MANAGER = new DataManager();
 	}
 
 	public void init() {

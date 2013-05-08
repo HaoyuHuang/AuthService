@@ -6,10 +6,12 @@ import com.photoshare.auth.Authenticator;
 import com.photoshare.auth.context.AuthDecoder;
 import com.photoshare.auth.context.AuthEncoder;
 import com.photoshare.auth.context.AuthEntryValve;
+import com.photoshare.auth.context.AuthorizeResponseValve;
 import com.photoshare.auth.context.AuthorizeValve;
 import com.photoshare.auth.context.Context;
 import com.photoshare.auth.context.DecoderValve;
 import com.photoshare.auth.context.EncodeValve;
+import com.photoshare.auth.context.ExceptionWrapper;
 import com.photoshare.auth.context.FlushValve;
 import com.photoshare.auth.context.Pipeline;
 import com.photoshare.auth.context.Processor;
@@ -36,17 +38,28 @@ public class AuthorizeProcessor implements Processor {
 		pipeline = new SimpleAuthenticationPipeline();
 		context = new AuthorizeContext();
 		pipeline.setBasic(new AuthEntryValve());
-		pipeline.addValve(new DecoderValve());
-		pipeline.addValve(new ValidationValve());
-		pipeline.addValve(new AuthorizeValve());
-		pipeline.addValve(new EncodeValve());
+
 		pipeline.addValve(new FlushValve());
+//		pipeline.addValve(new EncodeValve());
+		pipeline.addValve(new AuthorizeResponseValve());
+
+		pipeline.addValve(new AuthorizeValve());
+		pipeline.addValve(new ValidationValve());
+		pipeline.addValve(new DecoderValve());
+
 		pipeline.setContext(context);
 		try {
 			pipeline.invoke(context.getRequest(), context.getResponse(), null);
 		} catch (ValveException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			User user = context.getRequest().getCurrentUser();
+			String response = "";
+			if (user == null || user.getUserName() == null) {
+				response = ExceptionWrapper.toJSON(503, "Internal Error");
+			} else {
+				response = ExceptionWrapper.toJSON(user, e.getCode(),
+						e.getMessage());
+			}
+			return response;
 		}
 		return context.getResponse().getResponse();
 	}

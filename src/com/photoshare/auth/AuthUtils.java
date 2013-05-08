@@ -14,4 +14,8 @@ public class AuthUtils {
 	public static final String KEY_USER_PASSWORD = "password";
 
 	public static final String KEY_TOKEN = "token";
+	
+	public static final String KEY_MESSAGE = "message";
+	
+	public static final String KEY_CODE = "code";
 }

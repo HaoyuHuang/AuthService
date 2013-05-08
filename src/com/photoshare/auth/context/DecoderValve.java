@@ -16,7 +16,7 @@ public class DecoderValve implements Valve {
 			user = decoder.decode(valveContext.getContext().getRequest()
 					.getRequest());
 		} catch (DecodeException e) {
-			throw new ValveException("Decode Exception Occured");
+			throw new ValveException(401, "Decode Exception Occured");
 		}
 		valveContext.getContext().getRequest().bindUser(user);
 	}

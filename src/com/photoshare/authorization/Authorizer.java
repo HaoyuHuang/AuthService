@@ -1,6 +1,7 @@
 package com.photoshare.authorization;
 
 import com.photoshare.auth.context.AuthDecoder;
+import com.photoshare.auth.context.AuthEncoder;
 import com.photoshare.auth.user.User;
 import com.photoshare.validate.AuthValidator;
 
@@ -46,7 +47,12 @@ public interface Authorizer {
 	 * @return
 	 */
 	public AuthValidator getValidator();
-
+	
+	/**
+	 * @return
+	 */
+	public AuthEncoder getEncoder();
+	
 	/**
 	 * Delete the Authorizer.
 	 */

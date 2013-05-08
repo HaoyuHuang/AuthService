@@ -35,6 +35,39 @@ public final class Token {
 		this.expireDate = expireDate;
 	}
 
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result
+				+ ((credential == null) ? 0 : credential.hashCode());
+		result = prime * result
+				+ ((expireDate == null) ? 0 : expireDate.hashCode());
+		result = prime * result
+				+ ((startDate == null) ? 0 : startDate.hashCode());
+		result = prime * result + ((token == null) ? 0 : token.hashCode());
+		result = prime * result
+				+ ((userName == null) ? 0 : userName.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Token other = (Token) obj;
+		if (token == null) {
+			if (other.token != null)
+				return false;
+		} else if (!token.equals(other.token))
+			return false;
+		return true;
+	}
+
 	public String getToken() {
 		return token;
 	}
@@ -60,7 +93,8 @@ public final class Token {
 		JSONObject user = new JSONObject();
 		try {
 			user.put(AuthUtils.KEY_USER_NAME, userName);
-			user.put(AuthUtils.KEY_TOKEN, token);
+			user.put(AuthUtils.KEY_CODE, 200);
+			user.put(AuthUtils.KEY_MESSAGE, token);
 			wrapper.put(AuthUtils.KEY_USER, user);
 		} catch (JSONException e) {
 			e.printStackTrace();

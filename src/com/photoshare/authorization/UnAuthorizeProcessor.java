@@ -8,6 +8,7 @@ import com.photoshare.auth.context.AuthEncoder;
 import com.photoshare.auth.context.Context;
 import com.photoshare.auth.context.DecoderValve;
 import com.photoshare.auth.context.EncodeValve;
+import com.photoshare.auth.context.ExceptionWrapper;
 import com.photoshare.auth.context.FlushValve;
 import com.photoshare.auth.context.LogoutEntryValve;
 import com.photoshare.auth.context.Pipeline;
@@ -43,7 +44,15 @@ public class UnAuthorizeProcessor implements Processor {
 		try {
 			pipeline.invoke(context.getRequest(), context.getResponse(), null);
 		} catch (ValveException e) {
-			e.printStackTrace();
+			User user = context.getRequest().getCurrentUser();
+			String response = "";
+			if (user == null || user.getUserName() == null) {
+				response = ExceptionWrapper.toJSON(503, "Internal Error");
+			} else {
+				response = ExceptionWrapper.toJSON(user, e.getCode(),
+						e.getMessage());
+			}
+			return response;
 		}
 		return context.getResponse().getResponse();
 	}

@@ -4,9 +4,12 @@ import java.io.IOException;
 
 import com.photoshare.auth.context.AuthDecoder;
 import com.photoshare.auth.context.AuthEncoder;
+import com.photoshare.auth.context.AuthSimpleEncoder;
 import com.photoshare.auth.context.AuthenticateValve;
 import com.photoshare.auth.context.Context;
 import com.photoshare.auth.context.DecoderValve;
+import com.photoshare.auth.context.EncodeValve;
+import com.photoshare.auth.context.ExceptionWrapper;
 import com.photoshare.auth.context.FlushValve;
 import com.photoshare.auth.context.GetTokenValve;
 import com.photoshare.auth.context.LoginEntryValve;
@@ -38,6 +41,7 @@ public class AuthenticateProcessor implements Processor {
 		context = new AuthenticateContext();
 		pipeline.setBasic(new LoginEntryValve());
 		pipeline.addValve(new FlushValve());
+		pipeline.addValve(new EncodeValve());
 		pipeline.addValve(new GetTokenValve());
 		pipeline.addValve(new AuthenticateValve());
 		pipeline.addValve(new ValidationValve());
@@ -49,8 +53,15 @@ public class AuthenticateProcessor implements Processor {
 		try {
 			pipeline.invoke(context.getRequest(), context.getResponse(), null);
 		} catch (ValveException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			User user = context.getRequest().getCurrentUser();
+			String response = "";
+			if (user == null || user.getUserName() == null) {
+				response = ExceptionWrapper.toJSON(503, "Internal Error");
+			} else {
+				response = ExceptionWrapper.toJSON(user, e.getCode(),
+						e.getMessage());
+			}
+			return response;
 		}
 		return context.getResponse().getResponse();
 	}

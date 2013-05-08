@@ -35,7 +35,9 @@ public class AuthService {
 			object.put(AuthUtils.KEY_USER, jsonObject);
 			System.out.println(object.toString());
 			String content = new AuthSimpleEncoder().encode(object.toString());
-			System.out.println(authService.login(content));
+			content = authService.login(content);
+			System.out.println(content);
+			System.out.println(authService.authorize(content));
 		} catch (JSONException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

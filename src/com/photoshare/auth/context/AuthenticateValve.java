@@ -17,7 +17,7 @@ public class AuthenticateValve implements Valve {
 		try {
 			authenticator.authenticate(user);
 		} catch (AuthenticateException e) {
-			throw new ValveException("Authenticate Exception Occured");
+			throw new ValveException(401, "Login Denied");
 		}
 
 	}

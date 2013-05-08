@@ -14,7 +14,7 @@ public class FlushValve implements Valve {
 			response.flush();
 		} catch (IOException e) {
 			e.printStackTrace();
-			throw new ValveException(e.getMessage());
+			throw new ValveException(401, e.getMessage());
 		}
 	}
 
