@@ -1,10 +1,7 @@
 package com.photoshare.persistence;
 
-import java.util.List;
-
 import javax.persistence.EntityManager;
 import javax.persistence.Persistence;
-import javax.persistence.Query;
 
 import com.photoshare.auth.user.User;
 

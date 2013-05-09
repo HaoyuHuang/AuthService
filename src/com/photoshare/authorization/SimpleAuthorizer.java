@@ -47,6 +47,7 @@ public class SimpleAuthorizer implements Authorizer {
 		}
 
 		boolean exist = keeper.checkToken(user.getAuthToken());
+		System.out.println("user token: " + user.getAuthToken());
 		if (!exist) {
 			System.out.println("check failed");
 			throw new AuthorizeException();

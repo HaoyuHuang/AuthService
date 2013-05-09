@@ -12,6 +12,20 @@ import com.photoshare.authorization.Token;
 public interface User {
 
 	/**
+	 * Get the Ip of the request user
+	 * 
+	 * @return request user ip
+	 */
+	public String getIp();
+
+	/**
+	 * Get the User Agent of the request user
+	 * 
+	 * @return request user agent
+	 */
+	public String getUserAgent();
+
+	/**
 	 * Get the Name of the request User.
 	 * 
 	 * @return user name

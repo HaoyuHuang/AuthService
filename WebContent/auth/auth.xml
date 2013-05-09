@@ -1,33 +1,38 @@
-<!--Login Request -->
+<auth>
+	<!--Login Request -->
 
-<user>
-	<userName></userName>
-	<password></password>
-	<token></token>
-</user>
+	<user>
+		<ip></ip>
+		<userAgent></userAgent>
+		<userName></userName>
+		<password></password>
+		<token></token>
+	</user>
 
-<!-- Login Response -->
-<!-- code = 200, message = token, login success -->
-<!-- code = 401, message = Login Denied, login failed -->
-<user>
-	<userName></userName>
-	<code></code>
-	<message></message>
-</user>
+	<!-- Login Response -->
+	<!-- code = 200, message = token, login success -->
+	<!-- code = 401, message = Login Denied, login failed -->
+	<user>
+		<userName></userName>
+		<code></code>
+		<message></message>
+	</user>
 
-<!-- Authorize Request -->
-<user>
-	<userName></userName>
-	<token></token>
-</user>
+	<!-- Authorize Request -->
+	<user>
+		<ip></ip>
+		<userAgent></userAgent>
+		<userName></userName>
+		<token></token>
+	</user>
 
-<!-- Auth Response -->
-<!-- code = 200, message = token, Access success -->
-<!-- code = 405, message = Access Denied, Access failed -->
+	<!-- Auth Response -->
+	<!-- code = 200, message = token, Access success -->
+	<!-- code = 405, message = Access Denied, Access failed -->
 
-<user>
-	<userName></userName>
-	<code></code>
-	<message></message>
-</user>
-
+	<user>
+		<userName></userName>
+		<code></code>
+		<message></message>
+	</user>
+</auth>

@@ -1,8 +1,8 @@
 package com.photoshare.auth.context;
 
 import com.photoshare.auth.user.User;
-import com.photoshare.validate.ValidationException;
 import com.photoshare.validate.AuthValidator;
+import com.photoshare.validate.ValidationException;
 
 public class ValidationValve implements Valve {
 

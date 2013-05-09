@@ -29,13 +29,16 @@ public class AuthSimpleDecoder implements AuthDecoder {
 			throw new DecodeException();
 		}
 		JSONObject obj = json.optJSONObject(AuthUtils.KEY_USER);
+		String ip = obj.optString(AuthUtils.KEY_IP);
+		String userAgent = obj.optString(AuthUtils.KEY_USER_AGENT);
 		String userName = obj.optString(AuthUtils.KEY_USER_NAME);
 		String userPassword = obj.optString(AuthUtils.KEY_USER_PASSWORD);
-		String token = obj.optString(AuthUtils.KEY_TOKEN);
+		String token = obj.optString(AuthUtils.KEY_MESSAGE);
 		Credential credential = new PasswordCredential(userPassword);
 		Token authToken = new Token(token, userName, credential, new Date(),
 				null);
-		User user = new SimpleUser(userName, credential, new Date(), authToken);
+		User user = new SimpleUser(ip, userAgent, userName, credential,
+				new Date(), authToken);
 		return user;
 	}
 }

@@ -32,6 +32,7 @@ public class TokenPool {
 	public void put(String id, Token token) {
 		TokenKeepper tokenkeeper = pool.get(id);
 		if (tokenkeeper == null) {
+			System.out.println("put token: " + id + "---" + token);
 			tokenkeeper = new SimpleTokenKeeper(id);
 			tokenkeeper.putToken(token);
 			pool.put(id, tokenkeeper);

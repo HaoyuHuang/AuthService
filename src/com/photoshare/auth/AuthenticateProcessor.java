@@ -4,7 +4,6 @@ import java.io.IOException;
 
 import com.photoshare.auth.context.AuthDecoder;
 import com.photoshare.auth.context.AuthEncoder;
-import com.photoshare.auth.context.AuthSimpleEncoder;
 import com.photoshare.auth.context.AuthenticateValve;
 import com.photoshare.auth.context.Context;
 import com.photoshare.auth.context.DecoderValve;

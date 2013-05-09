@@ -29,5 +29,17 @@ public class AuthUser implements User {
 		// TODO Auto-generated method stub
 		return null;
 	}
-	
+
+	@Override
+	public String getIp() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public String getUserAgent() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

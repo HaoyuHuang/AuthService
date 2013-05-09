@@ -4,8 +4,8 @@ import com.photoshare.auth.context.AuthDecoder;
 import com.photoshare.auth.context.AuthEncoder;
 import com.photoshare.auth.context.AuthSimpleDecoder;
 import com.photoshare.auth.context.AuthSimpleEncoder;
-import com.photoshare.validate.AuthValidator;
 import com.photoshare.validate.AuthSimpleValidator;
+import com.photoshare.validate.AuthValidator;
 
 public class SimpleAuthorizeConfig implements AuthorizeConfig {
 

@@ -1,6 +1,5 @@
 package com.photoshare.auth.context;
 
-import org.codehaus.jettison.json.JSONObject;
 
 public class ValveException extends Throwable {
 

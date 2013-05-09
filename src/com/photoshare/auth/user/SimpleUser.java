@@ -6,6 +6,10 @@ import com.photoshare.authorization.Token;
 
 public final class SimpleUser implements User {
 
+	private final String ip;
+
+	private final String userAgent;
+
 	private final String userName;
 
 	private final Credential credential;
@@ -14,9 +18,11 @@ public final class SimpleUser implements User {
 
 	private final Token authToken;
 
-	public SimpleUser(String userName, Credential credential, Date loginDate,
-			Token authToken) {
+	public SimpleUser(String ip, String userAgent, String userName,
+			Credential credential, Date loginDate, Token authToken) {
 		super();
+		this.ip = ip;
+		this.userAgent = userAgent;
 		this.userName = userName;
 		this.credential = credential;
 		this.loginDate = loginDate;
@@ -45,6 +51,18 @@ public final class SimpleUser implements User {
 	public Token getAuthToken() {
 		// TODO Auto-generated method stub
 		return authToken;
+	}
+
+	@Override
+	public String getIp() {
+		// TODO Auto-generated method stub
+		return ip;
+	}
+
+	@Override
+	public String getUserAgent() {
+		// TODO Auto-generated method stub
+		return userAgent;
 	}
 
 }

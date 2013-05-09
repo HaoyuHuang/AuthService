@@ -26,6 +26,7 @@ public class SimpleTokenKeeper implements TokenKeepper {
 	public boolean checkToken(Token token) {
 		for (Token to : tokens) {
 			if (token.equals(to)) {
+				System.out.println(to);
 				return true;
 			}
 		}

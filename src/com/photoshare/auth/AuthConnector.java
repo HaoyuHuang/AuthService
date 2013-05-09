@@ -2,8 +2,6 @@ package com.photoshare.auth;
 
 import com.photoshare.auth.context.Processor;
 import com.photoshare.auth.context.ProcessorException;
-import com.photoshare.auth.user.PasswordCredential;
-import com.photoshare.auth.user.SimpleUser;
 import com.photoshare.authorization.AuthorizeProcessor;
 import com.photoshare.authorization.UnAuthorizeProcessor;
 

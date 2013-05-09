@@ -60,6 +60,8 @@ public final class Token {
 		if (getClass() != obj.getClass())
 			return false;
 		Token other = (Token) obj;
+		System.out.println("mytoken:" + token);
+		System.out.println("other token:" + other.token);
 		if (token == null) {
 			if (other.token != null)
 				return false;
@@ -100,6 +102,13 @@ public final class Token {
 			e.printStackTrace();
 		}
 		return wrapper.toString();
+	}
+
+	@Override
+	public String toString() {
+		return "Token [token=" + token + ", userName=" + userName
+				+ ", credential=" + credential + ", startDate=" + startDate
+				+ ", expireDate=" + expireDate + "]";
 	}
 
 }

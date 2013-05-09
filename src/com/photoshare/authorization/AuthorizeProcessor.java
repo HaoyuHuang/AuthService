@@ -10,7 +10,6 @@ import com.photoshare.auth.context.AuthorizeResponseValve;
 import com.photoshare.auth.context.AuthorizeValve;
 import com.photoshare.auth.context.Context;
 import com.photoshare.auth.context.DecoderValve;
-import com.photoshare.auth.context.EncodeValve;
 import com.photoshare.auth.context.ExceptionWrapper;
 import com.photoshare.auth.context.FlushValve;
 import com.photoshare.auth.context.Pipeline;

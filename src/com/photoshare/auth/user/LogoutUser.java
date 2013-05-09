@@ -30,4 +30,16 @@ public class LogoutUser implements User {
 		return null;
 	}
 
+	@Override
+	public String getIp() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public String getUserAgent() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

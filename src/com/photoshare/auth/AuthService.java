@@ -30,10 +30,10 @@ public class AuthService {
 			JSONObject jsonObject = new JSONObject();
 			jsonObject.put(AuthUtils.KEY_USER_NAME, "user");
 			jsonObject.put(AuthUtils.KEY_USER_PASSWORD, "12345");
-			jsonObject.put(AuthUtils.KEY_TOKEN, "ebr24ee");
+			jsonObject.put(AuthUtils.KEY_MESSAGE, "ebr24ee");
 			JSONObject object = new JSONObject();
 			object.put(AuthUtils.KEY_USER, jsonObject);
-			System.out.println(object.toString());
+//			System.out.println(object.toString());
 			String content = new AuthSimpleEncoder().encode(object.toString());
 			content = authService.login(content);
 			System.out.println(content);
