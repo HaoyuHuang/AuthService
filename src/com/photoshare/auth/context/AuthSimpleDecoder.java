@@ -25,7 +25,6 @@ public class AuthSimpleDecoder implements AuthDecoder {
 		try {
 			json = new JSONObject(k);
 		} catch (JSONException e) {
-			e.printStackTrace();
 			throw new DecodeException();
 		}
 		JSONObject obj = json.optJSONObject(AuthUtils.KEY_USER);

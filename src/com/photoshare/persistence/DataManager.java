@@ -31,7 +31,7 @@ public class DataManager {
 		if (user.getUserName().equals("user")) {
 			return true;
 		}
-		return false;
+		return true;
 
 	}
 

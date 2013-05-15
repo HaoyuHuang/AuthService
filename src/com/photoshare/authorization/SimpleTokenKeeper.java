@@ -23,10 +23,9 @@ public class SimpleTokenKeeper implements TokenKeepper {
 	}
 
 	@Override
-	public boolean checkToken(Token token) {
+	public synchronized boolean checkToken(Token token) {
 		for (Token to : tokens) {
 			if (token.equals(to)) {
-				System.out.println(to);
 				return true;
 			}
 		}
@@ -34,23 +33,23 @@ public class SimpleTokenKeeper implements TokenKeepper {
 	}
 
 	@Override
-	public Token putToken(Token token) {
+	public synchronized Token putToken(Token token) {
 		Token preToken = null;
-		for (Token to : tokens) {
-			if (token.equals(token)) {
-				preToken = to;
-				break;
-			}
-		}
-		if (preToken != null) {
-			tokens.remove(preToken);
-		}
+		// for (Token to : tokens) {
+		// if (token.equals(token)) {
+		// preToken = to;
+		// break;
+		// }
+		// }
+		// if (preToken != null) {
+		// tokens.remove(preToken);
+		// }
 		tokens.add(token);
 		return preToken;
 	}
 
 	@Override
-	public Token removeToken(Token token) {
+	public synchronized Token removeToken(Token token) {
 		tokens.remove(token);
 		return token;
 	}
@@ -67,7 +66,7 @@ public class SimpleTokenKeeper implements TokenKeepper {
 	}
 
 	@Override
-	public Collection<Token> removeAll(Collection<Token> tokens) {
+	public synchronized Collection<Token> removeAll(Collection<Token> tokens) {
 		this.tokens.removeAll(tokens);
 		return tokens;
 	}

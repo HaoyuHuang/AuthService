@@ -29,7 +29,7 @@ public class TokenPool {
 		return pool.get(id);
 	}
 
-	public void put(String id, Token token) {
+	public synchronized void put(String id, Token token) {
 		TokenKeepper tokenkeeper = pool.get(id);
 		if (tokenkeeper == null) {
 			System.out.println("put token: " + id + "---" + token);
@@ -41,7 +41,7 @@ public class TokenPool {
 		}
 	}
 
-	public void remove(String id) {
+	public synchronized void remove(String id) {
 		pool.remove(id);
 	}
 

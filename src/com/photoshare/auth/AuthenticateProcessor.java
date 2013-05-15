@@ -52,6 +52,7 @@ public class AuthenticateProcessor implements Processor {
 		try {
 			pipeline.invoke(context.getRequest(), context.getResponse(), null);
 		} catch (ValveException e) {
+			e.printStackTrace();
 			User user = context.getRequest().getCurrentUser();
 			String response = "";
 			if (user == null || user.getUserName() == null) {

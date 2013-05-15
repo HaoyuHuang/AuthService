@@ -60,8 +60,6 @@ public final class Token {
 		if (getClass() != obj.getClass())
 			return false;
 		Token other = (Token) obj;
-		System.out.println("mytoken:" + token);
-		System.out.println("other token:" + other.token);
 		if (token == null) {
 			if (other.token != null)
 				return false;
